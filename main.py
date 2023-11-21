@@ -7,7 +7,7 @@ def add_data():
     weapon_name = entry1.get()
 
     # 建立数据库连接
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='localhost', user='root', passwd='****', port=3306, db='t****')
 
     # 创建游标对象
     cursor = db.cursor()
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS {} (
 
 def update_combobox():
     # 建立数据库连接
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='localhost', user='root', passwd='****', port=3306, db='****')
 
     # 创建游标对象
     cursor = db.cursor()
@@ -49,7 +49,7 @@ def update_combobox():
 
 def delete_data():
    combox_value =data_combobox.get()
-   db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+   db = pymysql.connect(host='localhost', user='root', passwd='1****', port=3306, db='t****u')
 
    # 创建游标对象
    cursor = db.cursor()
@@ -71,7 +71,7 @@ def get_table_data(event):
     column_name1 = "buy_price"  # 指定要显示的列名
     column_name2 = "sell_price"
     # 连接数据库
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='localhost', user='root', passwd='1****a', port=3306, db='t****uu')
     cursor = db.cursor()
 
     # 查询数据
@@ -109,7 +109,7 @@ def add_buy():
     buy_price = entry2.get()  # 获取entry2中的数据
 
     # 连接数据库
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='localhost', user='root', passwd='1****', port=3306, db='te****u')
     cursor = db.cursor()
 
     # 插入数据
@@ -143,7 +143,7 @@ def add_sell():
     sell_price = entry3.get()  # 获取entry2中的数据
 
     # 连接数据库
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='localhost', user='root', passwd='****', port=3306, db='****')
     cursor = db.cursor()
 
     # 插入数据
@@ -255,7 +255,7 @@ listbox2.grid(row=2, column=7,  padx=10, pady=10)
 
 
 # 建立数据库连接
-db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+db = pymysql.connect(host='localhost', user='root', passwd='****', port=3306, db='****')
 
 # 创建游标对象
 cursor = db.cursor()
