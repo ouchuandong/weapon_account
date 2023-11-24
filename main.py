@@ -88,9 +88,11 @@ def get_table_data(event):
 
     # 清空Listbox
     listbox1.delete(0, 'end')
-
+    num_buy=0
     # 将数据添加到Listbox中
     for row in results1:
+        if row[0]is not None:
+            num_buy +=1
         listbox1.insert('end', row[0])
 
     query2 = f"SELECT {column_name2} FROM {selected_table}"
@@ -99,22 +101,24 @@ def get_table_data(event):
 
     # 清空Listbox
     listbox2.delete(0, 'end')
-
+    num_sell = 0
     # 将数据添加到Listbox中
     for row in results2:
+        if row[0]is not None:
+            num_sell+=1
         listbox2.insert('end', row[0])
 
     query3 = f"SELECT SUM(buy_price) AS total_buy_price FROM {selected_table}"
     cursor.execute(query3)
     result = cursor.fetchone()
     total_buy_price = result[0]
-    label2.config(text="总买入: {:.2f}".format(total_buy_price))
+    label2.config(text="总买入: {:.2f}".format(total_buy_price)+'数量'+str(num_buy))
 
     query4 = f"SELECT SUM(sell_price) AS total_sell_price FROM {selected_table}"
     cursor.execute(query4)
     result = cursor.fetchone()
     total_sell_price = result[0]
-    label3.config(text="总卖出: {:.2f}".format(total_sell_price))
+    label3.config(text="总卖出: {:.2f}".format(total_sell_price)+'数量'+str(num_sell))
 
     cursor.execute("SHOW TABLES;")
     table_names = cursor.fetchall()
@@ -375,3 +379,5 @@ data_combobox = ttk.Combobox(root_window, state='readonly', values=data_list)
 data_combobox.grid(row=1, column=2,  padx=5, pady=5)  # 设置行列位置和内边距
 data_combobox.bind("<<ComboboxSelected>>", get_table_data)
 root_window.mainloop()
+
+
