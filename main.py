@@ -16,7 +16,7 @@ def add_data():
     # 执行插入语句将数据添加到表中
     query = """
 CREATE TABLE IF NOT EXISTS {} (
-    
+    id INT AUTO_INCREMENT PRIMARY KEY,
     buy_price FLOAT,
     sell_price FlOAT,
     weapon_name VARCHAR(255),
@@ -149,6 +149,17 @@ def get_table_data(event):
 
     label4.config(text="利润: {:.2f}".format(all_total_sell_price-all_total_buy_price))
 
+    query5 = f"SELECT MAX(created_at) AS last_updated FROM {selected_table};"
+    cursor.execute(query5)
+
+    # 获取查询结果
+    result = cursor.fetchone()
+    last_updated = result[0]
+    last_updated=last_updated.strftime("%Y-%m-%d %H:%M:%S")
+    label4.config(text="最新更新时间:"+last_updated)
+
+
+
 
 
 
@@ -232,7 +243,7 @@ def delete_buy():
     db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
     cursor = db.cursor()
 
-    # 插入数据
+    # 删除数据
     query = f"DELETE FROM {selected_table} WHERE buy_price = '{buy_price}'"
     cursor.execute(query)
     db.commit()
@@ -259,7 +270,7 @@ def delete_sell():
         sell_price = listbox2.get(selected_index[0])  # 获取选中项的唯一sell_price值
 
         # 连接数据库
-        db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+        db = pymysql.connect(host='192.168.230.1', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
         cursor = db.cursor()
 
         # 删除数据
@@ -295,23 +306,29 @@ root_window.title("测试程序")
 
 # 创建标签
 label1 = tk.Label(root_window, text="添加武器种类")
-label1.grid(row=2, column=1, padx=10, pady=10)  # 设置行列位置和内边距
+label1.grid(row=3, column=1, padx=10, pady=10)  # 设置行列位置和内边距
 
 
 
 label2 = tk.Label(root_window, text="历史买入数据")
-label2.grid(row=1, column=3, padx=100, pady=10)  # 设置行列位置和内边距
+label2.grid(row=1, column=3, padx=5, pady=5)  # 设置行列位置和内边距
 
 label3 = tk.Label(root_window, text="历史卖出数据")
-label3.grid(row=1, column=7, padx=100, pady=10)  # 设置行列位置和内边距
+label3.grid(row=1, column=6, padx=100, pady=10)  # 设置行列位置和内边距
 
-label4 = tk.Label(root_window, text="历史卖出数据")
+label4 = tk.Label(root_window, text="")
 label4.grid(row=1, column=10, padx=10, pady=10)  # 设置行列位置和内边距
 
 
+label5 = tk.Label(root_window, text="")
+label5.grid(row=2, column=3, padx=5, pady=5)  # 设置行列位置和内边距
+
+label5 = tk.Label(root_window, text="")
+label5.grid(row=2, column=6, padx=5, pady=5)  # 设置行列位置和内边距
+
 # 文本框添加武器
 entry1 = tk.Entry(root_window)
-entry1.grid(row=2, column=2, padx=10, pady=10)  # 设置行列位置和内边距
+entry1.grid(row=3, column=2, padx=10, pady=10)  # 设置行列位置和内边距
 
 
 
@@ -319,42 +336,42 @@ entry1.grid(row=2, column=2, padx=10, pady=10)  # 设置行列位置和内边距
 
 
 entry2 = tk.Entry(root_window)
-entry2.grid(row=3, column=3, padx=20, pady=20)  # 设置行列位置和内边距
+entry2.grid(row=4, column=3, padx=20, pady=20)  # 设置行列位置和内边距
 
 entry3 = tk.Entry(root_window)
-entry3.grid(row=3, column=7, padx=20, pady=20)  # 设置行列位置和内边距
+entry3.grid(row=4, column=6, padx=20, pady=20)  # 设置行列位置和内边距
 
 
 
 
 
 button = tk.Button(root_window, text="添加数据", command=add_data)
-button.grid(row=3, column=1,  padx=10, pady=10)  # 设置行列位置和内边距
+button.grid(row=4, column=1,  padx=10, pady=10)  # 设置行列位置和内边距
 
 button2 = tk.Button(root_window, text="删除数据", command=delete_data)
-button2.grid(row=3, column=2,  padx=10, pady=10)  # 设置行列位置和内边距
+button2.grid(row=4, column=2,  padx=10, pady=10)  # 设置行列位置和内边距
 
 button3 = tk.Button(root_window, text="+", command=add_buy)
-button3.grid(row=3, column=4,  padx=10, pady=10)  # 设置行列位置和内边距
+button3.grid(row=4, column=4,  padx=10, pady=10)  # 设置行列位置和内边距
 
 button4 = tk.Button(root_window, text="+", command=add_sell)
-button4.grid(row=3, column=8,  padx=10, pady=10)  # 设置行列位置和内边距
+button4.grid(row=4, column=7,  padx=10, pady=10)  # 设置行列位置和内边距
 
 button5 = tk.Button(root_window, text="-", command=delete_buy)
-button5.grid(row=3, column=5,  padx=10, pady=10)  # 设置行列位置和内边距
+button5.grid(row=4, column=5,  padx=10, pady=10)  # 设置行列位置和内边距
 
 button6 = tk.Button(root_window, text="-", command=delete_sell)
-button6.grid(row=3, column=9,  padx=10, pady=10)  # 设置行列位置和内边距
+button6.grid(row=4, column=8,  padx=10, pady=10)  # 设置行列位置和内边距
 
 
 
 
 
 listbox1 =Listbox(root_window)
-listbox1.grid(row=2, column=3,  padx=10, pady=10)
+listbox1.grid(row=3, column=3,  padx=10, pady=10)
 
 listbox2 =Listbox(root_window)
-listbox2.grid(row=2, column=7,  padx=10, pady=10)
+listbox2.grid(row=3, column=6,  padx=10, pady=10)
 
 
 
@@ -376,7 +393,7 @@ db.close()
 
 # 创建下拉列表框并设置数据
 data_combobox = ttk.Combobox(root_window, state='readonly', values=data_list)
-data_combobox.grid(row=1, column=2,  padx=5, pady=5)  # 设置行列位置和内边距
+data_combobox.grid(row=1, column=2,  padx=10, pady=10)  # 设置行列位置和内边距
 data_combobox.bind("<<ComboboxSelected>>", get_table_data)
 root_window.mainloop()
 
