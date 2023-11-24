@@ -8,7 +8,7 @@ def add_data():
     weapon_name = entry1.get()
 
     # 建立数据库连接
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='localhost', user='root', passwd='1a', port=3306, db='t1uu')
 
     # 创建游标对象
     cursor = db.cursor()
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS {} (
 
 def update_combobox():
     # 建立数据库连接
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='localhost', user='root', passwd='11', port=3306, db='te1)
 
     # 创建游标对象
     cursor = db.cursor()
@@ -56,7 +56,7 @@ def update_combobox():
 
 def delete_data():
    combox_value =data_combobox.get()
-   db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+   db = pymysql.connect(host='localhost', user='root', passwd='1a', port=3306, db='t1')
 
    # 创建游标对象
    cursor = db.cursor()
@@ -78,7 +78,7 @@ def get_table_data(event):
     column_name1 = "buy_price"  # 指定要显示的列名
     column_name2 = "sell_price"
     # 连接数据库
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='lo1
     cursor = db.cursor()
 
     # 查询数据
@@ -181,7 +181,7 @@ def add_buy():
     buy_price = entry2.get()  # 获取entry2中的数据
 
     # 连接数据库
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host=1
     cursor = db.cursor()
 
     # 插入数据
@@ -209,7 +209,7 @@ def add_sell():
     sell_price = entry3.get()  # 获取entry2中的数据
 
     # 连接数据库
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='l1
     cursor = db.cursor()
 
     # 插入数据
@@ -240,7 +240,7 @@ def delete_buy():
     buy_price = listbox1.get(selected_data)
 
     # 连接数据库
-    db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+    db = pymysql.connect(host='l11
     cursor = db.cursor()
 
     # 删除数据
@@ -270,7 +270,7 @@ def delete_sell():
         sell_price = listbox2.get(selected_index[0])  # 获取选中项的唯一sell_price值
 
         # 连接数据库
-        db = pymysql.connect(host='192.168.230.1', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+        db = pymysql.connect(host1
         cursor = db.cursor()
 
         # 删除数据
@@ -378,7 +378,7 @@ listbox2.grid(row=3, column=6,  padx=10, pady=10)
 
 
 # 建立数据库连接
-db = pymysql.connect(host='localhost', user='root', passwd='1138754072Aa', port=3306, db='test_uu')
+db = pymysql.connect(host='l1
 
 # 创建游标对象
 cursor = db.cursor()
